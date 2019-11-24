@@ -1,4 +1,4 @@
-# *[El Tour de Francia]*
+# *El Tour de Francia*
 ---
 #### Materia: *Análisis y Diseño de Algoritmos (TC2017)*
 
