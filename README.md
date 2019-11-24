@@ -7,8 +7,8 @@
 ##### Campus: *Santa Fe*
 
 ##### Integrantes:
-1. *[Poner aquí Nombre y Apellidos del integrante 1]* *[Matrícula]*
-2. *[Poner aquí Nombre y Apellidos del integrante 2]* *[Matrícula]*
+1. *Fernando Garrote de la Macorra* *A01027503*
+2. *Alejandra Nissan Leizorek* *A01024682*
 
 ---
 ## 1. Aspectos generales
@@ -48,6 +48,7 @@ Como parte de la entrega final del proyecto, se debe incluir la siguiente inform
 ## 2. Descripción del problema
 
 *[Incluya aquí la descripción del problema a resolver.]*
+*El Tour de Francia es el evento anual más grande en el mundo del ciclismo. El tour consiste de 21 carreras repartidas en 23 días, las 21 carreras cubren al rededor de 3,300 kms y hay al rededor de 200 corredores. El  programa que realizamos es una simulación del Tour de Francia. El programa cuenta con las 21 carreras que hay en el tour, a las carreras le añadimos la cantidad de km que hay en la carrera, si descansan el siguiente día o no, el lugar de salida y el lugar de llegada. El usuario debe de decir cuantos ciclistas hay en la carrera y el programa regresa quien gana cada una de las carreras, el tour, y cuanto tiempo le tomó realizar todas las carreras. El ganador del Tour es el ciclista que ganó la mayor cantidad de carreras. *
 
 ## 3. Solución secuencial
 
@@ -56,6 +57,10 @@ Como parte de la entrega final del proyecto, se debe incluir la siguiente inform
 ## 4. Análisis de los inhibidores del paralelismo
 
 *[Incluya aquí el análisis de los inhibidores presentes en su problema, así como la solución a los mismos.]*
+*Un inhibidor que se presentó fue el de las variables compartidas, nuestra solución contenía tres ciclos anidados en donde se debía almacenar la suma de los tiempos de cada jugador y sus puntos obtenidos. Para eliminar este problema, creamos una estructura llamada ciclista, en donde uno de sus atributos era el tiempo de cada jugador y sus puntos. De esta manera, no existía ninguna variable compartida, lo cual facilitó la implementación del paralelismo. Unicamente existieron variables privadas para acceder a la información de los ciclistas, los contadores.
+
+Otro inhibidor del paralelismo en el problema, era que los ciclistas debían esperarse terminando cada etapa de la carrera. Por lo que, no se podían paralelizar todos los ciclos para asegurar esa espera entre jugadores. 
+*
 
 ## 5. Solución paralela
 
@@ -65,9 +70,12 @@ Como parte de la entrega final del proyecto, se debe incluir la siguiente inform
 
 *[Incluya aquí la tabla con los resultados de las mediciones.]*
 
+
+
 ## 7. Gráfica(s) comparativa(s)
 
 *[Incluya aquí la(s) gráfica(s) comparativa(s).]*
+
 
 ## 8. Interpretación de los resultados
 
