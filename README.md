@@ -46,33 +46,28 @@ Como parte de la entrega final del proyecto, se debe incluir la siguiente inform
 * El código debe estar documentado siguiendo los estándares definidos para el lenguaje de programación seleccionado.
 
 ## 2. Descripción del problema
-
-*[Incluya aquí la descripción del problema a resolver.]*
-*El Tour de Francia es el evento anual más grande en el mundo del ciclismo. El tour consiste de 21 carreras repartidas en 23 días, las 21 carreras cubren al rededor de 3,300 kms y hay al rededor de 200 corredores. El  programa que realizamos es una simulación del Tour de Francia. El programa cuenta con las 21 carreras que hay en el tour, a las carreras le añadimos la cantidad de km que hay en la carrera, si descansan el siguiente día o no, el lugar de salida y el lugar de llegada. El usuario debe de decir cuantos ciclistas hay en la carrera y el programa regresa quien gana cada una de las carreras, el tour, y cuanto tiempo le tomó realizar todas las carreras. El ganador del Tour es el ciclista que ganó la mayor cantidad de carreras. *
+El Tour de Francia es el evento anual más grande en el mundo del ciclismo. El tour consiste de 21 carreras repartidas en 23 días, las 21 carreras cubren al rededor de 3,300 kms y hay al rededor de 200 corredores. El  programa que realizamos es una simulación del Tour de Francia del 2020 específicamente. El programa cuenta con las 21 carreras que hay en el tour, a las carreras le añadimos la cantidad de km que hay en la carrera, si descansan el siguiente día o no, el lugar de salida y el lugar de llegada. El usuario debe de decir cuantos ciclistas hay en la carrera y el programa regresa quien gana cada una de las carreras, el tour, y cuanto tiempo le tomó realizar todas las carreras. El ganador del Tour es el ciclista que ganó la mayor cantidad de carreras. 
 
 ## 3. Solución secuencial
 
-*[Incluya aquí la descripción de la solución secuencial.]*
-*Primeramente, inicializamos con la información real de las fases de toda la carrera, para que realmente se pudiera ver un comportamiento real del algoritmo, condierando los kilómetros que se recorren en cada fase. 
+Primeramente, inicializamos con la información real de las fases de toda la carrera, para que realmente se pudiera ver un comportamiento real del algoritmo, condierando los kilómetros que se recorren en cada fase. 
 Creamos una estructura llamada ciclista y otra llamada parada para almacenar los datos necesarios en ellos y poder diferenciarlos. 
 Posteriormente, creamos tres ciclos anidados, el primer ciclo recorre todas las paradas de la carrera, el segundo recorre a los ciclistas de cada carrera y el tercero recorre los kilómetros de la fase en la que se encuentra.
 En este último ciclo, el más adentrado. Se calcula una velocidad aleatoria, de entre 15 y 105 km/h, esto se debe a que la velocidad esta en constante cambio. Posteriormente se le suma al tiempo de los ciclistas 1/velocidad, para calcular el tiempo real. 
-Durante las fases, encuentra quién tiene el menor tiempo y determina un ganador de la carrera para sumarle 1 punto al ganador. De esta manera, se calcula más adelante el ganador FINAL de la carrera y en caso de haber un empate lo muestra.*
+Durante las fases, encuentra quién tiene el menor tiempo y determina un ganador de la carrera para sumarle 1 punto al ganador. De esta manera, se calcula más adelante el ganador FINAL de la carrera y en caso de haber un empate lo muestra.
 
 ## 4. Análisis de los inhibidores del paralelismo
 
-*[Incluya aquí el análisis de los inhibidores presentes en su problema, así como la solución a los mismos.]*
-*Un inhibidor que se presentó fue el de las variables compartidas, nuestra solución contenía tres ciclos anidados en donde se debía almacenar la suma de los tiempos de cada jugador y sus puntos obtenidos. Para eliminar este problema, creamos una estructura llamada ciclista, en donde uno de sus atributos era el tiempo de cada jugador y sus puntos. De esta manera, no existía ninguna variable compartida, lo cual facilitó la implementación del paralelismo. Unicamente existieron variables privadas para acceder a la información de los ciclistas, los contadores.
+Un inhibidor que se presentó fue el de las variables compartidas, nuestra solución contenía tres ciclos anidados en donde se debía almacenar la suma de los tiempos de cada jugador y sus puntos obtenidos. Para eliminar este problema, creamos una estructura llamada ciclista, en donde uno de sus atributos era el tiempo de cada jugador y sus puntos. De esta manera, no existía ninguna variable compartida, lo cual facilitó la implementación del paralelismo. Unicamente existieron variables privadas para acceder a la información de los ciclistas, los contadores.
 
 Otro inhibidor del paralelismo en el problema, era que los ciclistas debían esperarse terminando cada etapa de la carrera. Por lo que, no se podían paralelizar todos los ciclos para asegurar esa espera entre jugadores. 
-*
+
 
 ## 5. Solución paralela
 
-*[Incluya aquí la descripción de la solución paralela.]*
-*Como ya se mencionó con anterioridad en la solución paralela, nuestra solución cuentra con tres ciclos anidados para recorrer las fases, los ciclistas y cada kilómetro de las fases. 
+Como ya se mencionó con anterioridad en la solución paralela, nuestra solución cuentra con tres ciclos anidados para recorrer las fases, los ciclistas y cada kilómetro de las fases. 
 El primer ciclo no se debía paralelizar, debido a que los ciclistas salen cada día a una diferente fase teniendo que dormir y esperar al resto. Por lo que, se paralelizaron los siguientes dos ciclos, para que diferentes hilos de ejecución trabajaran en cada ciclista y en el tiempo que les lleva recorrer cada kilómetro de la fase en la que se encuentran. 
-Además, en la sección del código en la que se busca al ganador total de la carrera y a los empatados, cada uno de ellos un ciclo individual. Se paralelizó para repartir la búsqueda de los ganadores.*
+Además, en la sección del código en la que se busca al ganador total de la carrera y a los empatados, cada uno de ellos un ciclo individual. Se paralelizó para repartir la búsqueda de los ganadores.
 ## 6. Tabla de resultados
 
 
@@ -85,8 +80,8 @@ Además, en la sección del código en la que se busca al ganador total de la ca
 
 ## 8. Interpretación de los resultados
 
-*Primeramente, ejecutamos el código en la máquina virtual. Notamos que el tiempo de ejecución del algoritmo paralelo era mayor debido a que la máquina virtual compite con otros hilos de ejecución de la computadora y a su vez el programa compite con sus propios hilos de ejecución haciendo que no sea una solución óptima con programación paralela. 
-Al correrlo de manera nativa en el sistema operativo mac, notamos que seguía demorando más para la solución paralela que para la secuencial. Lo que nos lleva a notar que la libreria openmp genera un overhead muy pesado, haciendo que no para todas las soluciones sea conveniente aplicar paralelismo. Esto se nota en nuestra solución, ya que no se pudieron colapsar los ciclos, ni se pudo paralelizar todo, por lo que los resultados hacen lógica: deben dividirse la carga, competir por tiempo de procesamiento y después esperar a que terminen para volver a comenzar. *
+Primeramente, ejecutamos el código en la máquina virtual. Notamos que el tiempo de ejecución del algoritmo paralelo era mayor debido a que la máquina virtual compite con otros hilos de ejecución de la computadora y a su vez el programa compite con sus propios hilos de ejecución haciendo que no sea una solución óptima con programación paralela. 
+Al correrlo de manera nativa en el sistema operativo mac, notamos que seguía demorando más para la solución paralela que para la secuencial. Lo que nos lleva a notar que la libreria openmp genera un overhead muy pesado, haciendo que no para todas las soluciones sea conveniente aplicar paralelismo. Esto se nota en nuestra solución, ya que no se pudieron colapsar los ciclos, ni se pudo paralelizar todo, por lo que los resultados hacen lógica: deben dividirse la carga, competir por tiempo de procesamiento y después esperar a que terminen para volver a comenzar. 
 
 ## 9. Guía paso a paso
 
