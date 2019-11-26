@@ -85,8 +85,12 @@ Al correrlo de manera nativa en el sistema operativo mac, notamos que seguía de
 
 ## 9. Guía paso a paso
 
-*[Incluya aquí la guía para la ejecución de los códigos.]*
+Para correr el programa se debe de tener descargado c++. El programa se debe de guardar con el nombre que el usuario deseé y después .cpp. Después se debe de ir a la terminal y se debe de llegar a la ruta en la que se guardo el programa, para hacer eso se escribe “cd” antes de escribir la ruta en la que se guardo el programa. Para compilar el archivo secuencial se debe de escribir “g++ nombredearchivo.cpp -o out”. Para correr el programa se escribe “./out”. Después el programa le va a preguntar el usuario la cantidad de ciclistas que desea que hayan en la carrera. Al final el programa le va a decir al usuario el ganador del tour, el tiempo que le tomó al ganador hacer todas las carreras y el tiempo que le llevó al programa en realizarse. Para compilar el archivo paralelizado se debe de escribir “g++ -fopenmp nombredearchivo.cpp -o out”. Para correr el programa se debe de escribir “OMP_NUM_THREADS=# ./out”, en lugar de # se escribe la cantidad de threads que se desea. Si se desea que el programa sea static, dynamic, guided o auto se escribe “OMP_NUM_THREADS=# OMP_SCHEDULED=x ./out”, en lugar de x se escribe lo que se deseé que sea el programa. Después el programa le va a preguntar el usuario la cantidad de ciclistas que desea que hayan en la carrera. Al final el programa le va a decir al usuario el ganador del tour, el tiempo que le tomó al ganador hacer todas las carreras y el tiempo que le llevó al programa en realizarse.
 
 ## 10. Referencias
 
-*[Incluya aquí las referencias a sitios de interés y cualquier otra información que haya utilizado para realizar el proyecto y que le puedan ser de utilidad a otras personas que quieran usarlo como referencia]*
+
+La Historia del Tour de Francia - Las Maillots, Las Étapes y 116 años de Leyendas. (03 de Julio de 2019). Obtenido de Bike Exchange: https://www.bikeexchange.com.co/blog/historia-tour-de-francia
+Recorrido 2020. (s.f.). Obtenido de Tour de france: https://www.letour.fr/es/recorrido-general
+
+
