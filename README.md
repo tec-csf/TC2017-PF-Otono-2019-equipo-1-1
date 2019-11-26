@@ -83,11 +83,15 @@ Además, en la sección del código en la que se busca al ganador total de la ca
 Primeramente, ejecutamos el código en la máquina virtual. Notamos que el tiempo de ejecución del algoritmo paralelo era mayor debido a que la máquina virtual compite con otros hilos de ejecución de la computadora y a su vez el programa compite con sus propios hilos de ejecución haciendo que no sea una solución óptima con programación paralela. 
 Al correrlo de manera nativa en el sistema operativo mac, notamos que seguía demorando más para la solución paralela que para la secuencial. Lo que nos lleva a notar que la libreria openmp genera un overhead muy pesado, haciendo que no para todas las soluciones sea conveniente aplicar paralelismo. Esto se nota en nuestra solución, ya que no se pudieron colapsar los ciclos, ni se pudo paralelizar todo, por lo que los resultados hacen lógica: deben dividirse la carga, competir por tiempo de procesamiento y después esperar a que terminen para volver a comenzar. 
 
-## 9. Guía paso a paso
+## 9. Análisis de resultados
+
+En todas las gráficas entre mas threads se usaron, más tiempo se tardó en realizar el programa. También el programa se tarda más tiempo cuando habían mas ciclistas que cuando habían menos. El programa secuencial tardó menos en realizarse que el static, dinamyc, guided y auto. Entre el static, dynamic, guided y el auto no hay un método que se tardara menos o más que los otros en todos los puntos. Hay métodos que se tardan más con una cantidad de threads o de ciclistas que los otros métodos pero usando una cantidad distinta de threads o de ciclistas se tardan menos.   
+
+## 10. Guía paso a paso
 
 Para correr el programa se debe de tener descargado c++. El programa se debe de guardar con el nombre que el usuario deseé y después .cpp. Después se debe de ir a la terminal y se debe de llegar a la ruta en la que se guardo el programa, para hacer eso se escribe “cd” antes de escribir la ruta en la que se guardo el programa. Para compilar el archivo secuencial se debe de escribir “g++ nombredearchivo.cpp -o out”. Para correr el programa se escribe “./out”. Después el programa le va a preguntar el usuario la cantidad de ciclistas que desea que hayan en la carrera. Al final el programa le va a decir al usuario el ganador del tour, el tiempo que le tomó al ganador hacer todas las carreras y el tiempo que le llevó al programa en realizarse. Para compilar el archivo paralelizado se debe de escribir “g++ -fopenmp nombredearchivo.cpp -o out”. Para correr el programa se debe de escribir “OMP_NUM_THREADS=# ./out”, en lugar de # se escribe la cantidad de threads que se desea. Si se desea que el programa sea static, dynamic, guided o auto se escribe “OMP_NUM_THREADS=# OMP_SCHEDULED=x ./out”, en lugar de x se escribe lo que se deseé que sea el programa. Después el programa le va a preguntar el usuario la cantidad de ciclistas que desea que hayan en la carrera. Al final el programa le va a decir al usuario el ganador del tour, el tiempo que le tomó al ganador hacer todas las carreras y el tiempo que le llevó al programa en realizarse.
 
-## 10. Referencias
+## 11. Referencias
 
 
 La Historia del Tour de Francia - Las Maillots, Las Étapes y 116 años de Leyendas. (03 de Julio de 2019). Obtenido de Bike Exchange: https://www.bikeexchange.com.co/blog/historia-tour-de-francia
