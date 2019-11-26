@@ -53,6 +53,11 @@ Como parte de la entrega final del proyecto, se debe incluir la siguiente inform
 ## 3. Solución secuencial
 
 *[Incluya aquí la descripción de la solución secuencial.]*
+*Primeramente, inicializamos con la información real de las fases de toda la carrera, para que realmente se pudiera ver un comportamiento real del algoritmo, condierando los kilómetros que se recorren en cada fase. 
+Creamos una estructura llamada ciclista y otra llamada parada para almacenar los datos necesarios en ellos y poder diferenciarlos. 
+Posteriormente, creamos tres ciclos anidados, el primer ciclo recorre todas las paradas de la carrera, el segundo recorre a los ciclistas de cada carrera y el tercero recorre los kilómetros de la fase en la que se encuentra.
+En este último ciclo, el más adentrado. Se calcula una velocidad aleatoria, de entre 15 y 105 km/h, esto se debe a que la velocidad esta en constante cambio. Posteriormente se le suma al tiempo de los ciclistas 1/velocidad, para calcular el tiempo real. 
+Durante las fases, encuentra quién tiene el menor tiempo y determina un ganador de la carrera para sumarle 1 punto al ganador. De esta manera, se calcula más adelante el ganador FINAL de la carrera y en caso de haber un empate lo muestra.*
 
 ## 4. Análisis de los inhibidores del paralelismo
 
@@ -65,21 +70,23 @@ Otro inhibidor del paralelismo en el problema, era que los ciclistas debían esp
 ## 5. Solución paralela
 
 *[Incluya aquí la descripción de la solución paralela.]*
-
+*Como ya se mencionó con anterioridad en la solución paralela, nuestra solución cuentra con tres ciclos anidados para recorrer las fases, los ciclistas y cada kilómetro de las fases. 
+El primer ciclo no se debía paralelizar, debido a que los ciclistas salen cada día a una diferente fase teniendo que dormir y esperar al resto. Por lo que, se paralelizaron los siguientes dos ciclos, para que diferentes hilos de ejecución trabajaran en cada ciclista y en el tiempo que les lleva recorrer cada kilómetro de la fase en la que se encuentran. 
+Además, en la sección del código en la que se busca al ganador total de la carrera y a los empatados, cada uno de ellos un ciclo individual. Se paralelizó para repartir la búsqueda de los ganadores.*
 ## 6. Tabla de resultados
 
-*[Incluya aquí la tabla con los resultados de las mediciones.]*
 
-
+*Se encuentra en la carpeta de Documentos, en el archivo de resultados*
 
 ## 7. Gráfica(s) comparativa(s)
+*Se encuentra en la carpeta de Documentos, en el archivo de ProyectoFinal*
 
-*[Incluya aquí la(s) gráfica(s) comparativa(s).]*
 
 
 ## 8. Interpretación de los resultados
 
-*[Incluya aquí la interpretación de los resultados.]*
+*Primeramente, ejecutamos el código en la máquina virtual. Notamos que el tiempo de ejecución del algoritmo paralelo era mayor debido a que la máquina virtual compite con otros hilos de ejecución de la computadora y a su vez el programa compite con sus propios hilos de ejecución haciendo que no sea una solución óptima con programación paralela. 
+Al correrlo de manera nativa en el sistema operativo mac, notamos que seguía demorando más para la solución paralela que para la secuencial. Lo que nos lleva a notar que la libreria openmp genera un overhead muy pesado, haciendo que no para todas las soluciones sea conveniente aplicar paralelismo. Esto se nota en nuestra solución, ya que no se pudieron colapsar los ciclos, ni se pudo paralelizar todo, por lo que los resultados hacen lógica: deben dividirse la carga, competir por tiempo de procesamiento y después esperar a que terminen para volver a comenzar. *
 
 ## 9. Guía paso a paso
 
